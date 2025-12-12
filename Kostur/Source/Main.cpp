@@ -170,8 +170,10 @@ int main()
         }
         else
         {
-            float speed = 0.25f;
-            travelT += speed * (float)deltaTime;
+            float worldSpeed = 0.25f;
+            float len = sqrt((nx - cx) * (nx - cx) + (ny - cy) * (ny - cy));
+            travelT += (worldSpeed / len) * deltaTime;
+
 
             if (travelT >= 1.0f)
             {
@@ -188,9 +190,10 @@ int main()
                         {
                             if (passengers > 1)
                             {
-                                int maxFines = passengers - 1;
-                                int numFines = rand() % maxFines;
+                                int maxFines = passengers - 1;          // broj “pravih” putnika
+                                int numFines = (maxFines > 0) ? (rand() % (maxFines + 1)) : 0;  // 0..maxFines
                                 totalFines += numFines;
+
                             }
 
                             passengers--; // kontrola izlazi
