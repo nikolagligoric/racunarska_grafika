@@ -46,6 +46,6 @@ namespace BusRender
     void DrawSteeringWheel(RenderCtx& ctx, const SceneState& s,
         Model& steeringWheel, float wheelSteerDeg, float wheelTiltDeg);
 
-    void DrawActors(RenderCtx& ctx, const SceneState& s, std::vector<Model>& people,
+    void DrawActors(RenderCtx& ctx, const SceneState& s, const Model& controlModel, std::vector<Model>& people,
         const std::deque<Actor>& insideActors, bool hasMoving, const Actor& movingActor);
 }

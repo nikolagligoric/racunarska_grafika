@@ -236,7 +236,7 @@ namespace BusRender
         glUseProgram(ctx.shader);
     }
 
-    void DrawActors(RenderCtx& ctx, const SceneState& s, std::vector<Model>& people,
+    void DrawActors(RenderCtx& ctx, const SceneState& s, const Model& controlModel, std::vector<Model>& people,
         const std::deque<Actor>& insideActors, bool hasMoving, const Actor& movingActor)
     {
         Shader& sh = *ctx.modelShader;
@@ -275,9 +275,17 @@ namespace BusRender
                 GLboolean wasCull = glIsEnabled(GL_CULL_FACE);
                 glDisable(GL_CULL_FACE);
 
-                int idx = a.modelIndex;
-                if (idx < 0 || idx >= (int)people.size()) idx = 0;
-                people[idx].Draw(sh);
+                if (a.type == ActorType::Control)
+                {
+                    controlModel.Draw(sh);
+                }
+                else
+                {
+                    int idx = a.modelIndex;
+                    if (idx < 0 || idx >= (int)people.size()) idx = 0;
+                    people[idx].Draw(sh);
+                }
+
 
                 if (wasCull && ctx.cullEnabled) glEnable(GL_CULL_FACE);
             };

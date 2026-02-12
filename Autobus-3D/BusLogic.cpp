@@ -200,13 +200,13 @@ void BusLogic::startEnterActor(ActorType type)
 
     if (type == ActorType::Control)
     {
-        a.modelIndex = SKIN_COUNT - 1;
+        a.modelIndex = 0;
     }
     else
     {
-        int passengerSkinCount = SKIN_COUNT - 1;
-        a.modelIndex = ((a.id - 1) % passengerSkinCount);
+        a.modelIndex = (a.id - 1) % SKIN_COUNT;
     }
+
 
     a.anim = ActorAnim::Entering;
 

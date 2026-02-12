@@ -318,6 +318,7 @@ int main()
     const double TARGET_DT = 1.0 / 75.0;
 
     Model steeringWheel("res/Models/Steeringwheel.glb");
+    Model controlModel("res/Models/control.fbx");
 
     std::vector<std::string> fbxPaths = {
         "res/Models/character-a.fbx",
@@ -329,7 +330,6 @@ int main()
         "res/Models/character-g.fbx",
         "res/Models/character-h.fbx",
         "res/Models/character-i.fbx",
-        "res/Models/character-j.fbx",
         "res/Models/character-k.fbx",
         "res/Models/character-l.fbx",
         "res/Models/character-m.fbx",
@@ -408,7 +408,7 @@ int main()
 
         BusRender::DrawSteeringWheel(rctx, scene, steeringWheel, wheelSteer, 25.0f);
 
-        BusRender::DrawActors(rctx, scene, people,
+        BusRender::DrawActors(rctx, scene, controlModel, people,
             logic.insideActors(),
             logic.hasMovingActor(),
             logic.movingActor()
